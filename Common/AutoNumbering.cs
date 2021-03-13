@@ -34,9 +34,10 @@ namespace TechCenter
                 Entity autoNumberEnt = getAutoNumber(targetEntity.LogicalName);
 
                 int counter = autoNumberEnt.GetAttributeValue<int>("pw_currentnumber");
+                string count = autoNumberEnt.GetAttributeValue<string>("pw_prefix") + counter + autoNumberEnt.GetAttributeValue<string>("pw_suffix");
                 counter++;
 
-                targetEntity["pw_name"] = counter.ToString();
+                targetEntity["pw_name"] = count;
 
                 autoNumberEnt["pw_currentnumber"] = counter;
                 organizationService.Update(autoNumberEnt);
